@@ -1,0 +1,12 @@
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\bin\Debug\net5.0\MoneyTracking.Options.deps.json
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\bin\Debug\net5.0\MoneyTracking.Options.dll
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\bin\Debug\net5.0\ref\MoneyTracking.Options.dll
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\bin\Debug\net5.0\MoneyTracking.Options.pdb
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\obj\Debug\net5.0\MoneyTracking.Options.csprojAssemblyReference.cache
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\obj\Debug\net5.0\MoneyTracking.Options.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\obj\Debug\net5.0\MoneyTracking.Options.AssemblyInfoInputs.cache
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\obj\Debug\net5.0\MoneyTracking.Options.AssemblyInfo.cs
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\obj\Debug\net5.0\MoneyTracking.Options.csproj.CoreCompileInputs.cache
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\obj\Debug\net5.0\MoneyTracking.Options.dll
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\obj\Debug\net5.0\ref\MoneyTracking.Options.dll
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Options\obj\Debug\net5.0\MoneyTracking.Options.pdb

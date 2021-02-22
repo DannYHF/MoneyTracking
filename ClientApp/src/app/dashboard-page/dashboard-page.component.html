@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-6">
+    <app-categories></app-categories>
+  </div>
+  <div class="col-6">
+    <div class="row">
+      <div class="container">
+        <app-last-costs></app-last-costs>
+      </div>
+    </div>
+    <div class="row" (resized)="onResize($event)">
+      <div class="container">
+        <app-donut-chart [view]="view"></app-donut-chart>
+      </div>
+    </div>
+  </div>
+</div>

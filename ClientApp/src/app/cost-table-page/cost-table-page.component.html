@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Category</th>
+    <th scope="col">Amount of money</th>
+    <th scope="col">Date</th>
+    <th scope="col">Controls</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cost of costs;let i = index">
+    <th scope="row">{{i+1}}</th>
+    <td>{{cost.categoryName}}</td>
+    <td>{{cost.amountOfMoney}}</td>
+    <td>{{cost.CreateDate | date: "short"}}</td>
+    <td>
+      <button class="btn btn-primary">Edit</button>
+      <button class="btn btn-danger">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

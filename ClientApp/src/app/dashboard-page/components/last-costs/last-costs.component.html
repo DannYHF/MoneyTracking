@@ -1,0 +1,12 @@
+<table class="table gray-border">
+  <thead>
+  <tr>
+    <th class="text-center">Last costs</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of data">
+    <th class="text-center">{{item.amount}} was spent on the '{{item.categoryName}}' category.</th>
+  </tr>
+  </tbody>
+</table>

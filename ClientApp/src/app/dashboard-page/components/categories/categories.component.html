@@ -1,0 +1,28 @@
+<div class="gray-border" style="margin: 0 -5% -5% -5%;">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let src of imgUrls"
+           class="col-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="category-item">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+                <img class="category-img" src="{{src}}" alt="not found">
+              </div>
+              <div class="col-6 text-center">
+                <button class="btn"><h4>&#8942;</h4></button>
+              </div>
+            </div>
+            <div class="row text-center">
+              <div class="col">
+                <div class="cat-name ">
+                  CategoryName
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
