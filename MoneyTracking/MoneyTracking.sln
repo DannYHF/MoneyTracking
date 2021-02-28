@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyTracking.API", "MoneyT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyTracking.Options", "MoneyTracking.Options\MoneyTracking.Options.csproj", "{D4957729-FC7C-494C-9123-B9553CF35A42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyTracking.Data", "MoneyTracking.Data\MoneyTracking.Data.csproj", "{6AD80FE8-C51D-43B7-9804-B6862D17E3F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{D4957729-FC7C-494C-9123-B9553CF35A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4957729-FC7C-494C-9123-B9553CF35A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4957729-FC7C-494C-9123-B9553CF35A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AD80FE8-C51D-43B7-9804-B6862D17E3F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD80FE8-C51D-43B7-9804-B6862D17E3F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD80FE8-C51D-43B7-9804-B6862D17E3F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD80FE8-C51D-43B7-9804-B6862D17E3F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

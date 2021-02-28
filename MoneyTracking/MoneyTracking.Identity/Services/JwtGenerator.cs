@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using MoneyTracking.API.Models.Entities;
+using MoneyTracking.Data.Entities;
 using MoneyTracking.Options;
 
 namespace MoneyTracking.Identity.Services

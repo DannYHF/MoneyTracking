@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="10.1.1" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.3" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-preview.1.21102.2" />
@@ -17,7 +18,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MoneyTracking.Data\MoneyTracking.Data.csproj" />
       <ProjectReference Include="..\MoneyTracking.Options\MoneyTracking.Options.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\Interfaces" />
     </ItemGroup>
 
 </Project>

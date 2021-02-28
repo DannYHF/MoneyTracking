@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using MoneyTracking.API.Models.Entities;
 using MoneyTracking.Identity.Models;
 
 namespace MoneyTracking.Identity.Services

@@ -1,0 +1,12 @@
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\bin\Debug\net5.0\MoneyTracking.Data.deps.json
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\bin\Debug\net5.0\MoneyTracking.Data.dll
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\bin\Debug\net5.0\ref\MoneyTracking.Data.dll
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\bin\Debug\net5.0\MoneyTracking.Data.pdb
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\MoneyTracking.Data.csprojAssemblyReference.cache
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\MoneyTracking.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\MoneyTracking.Data.AssemblyInfoInputs.cache
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\MoneyTracking.Data.AssemblyInfo.cs
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\MoneyTracking.Data.csproj.CoreCompileInputs.cache
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\MoneyTracking.Data.dll
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\ref\MoneyTracking.Data.dll
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\MoneyTracking.Data.pdb

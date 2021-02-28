@@ -73,3 +73,6 @@ C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.API\obj\Debug\n
 C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.API\bin\Debug\net5.0\MoneyTracking.Options.dll
 C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.API\bin\Debug\net5.0\MoneyTracking.Options.pdb
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.API\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.API\bin\Debug\net5.0\MoneyTracking.Data.dll
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.API\bin\Debug\net5.0\MoneyTracking.Data.pdb

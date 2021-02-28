@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MoneyTracking.API.Models.Entities;
+using MoneyTracking.Data.Entities;
 
-namespace MoneyTracking.API.Models
+namespace MoneyTracking.Data
 {
     public class AppDbContext : IdentityDbContext<AppUser>
     {

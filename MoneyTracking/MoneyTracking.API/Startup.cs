@@ -1,35 +1,33 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MoneyTracking.Data;
+using MoneyTracking.Data.Entities;
 using MoneyTracking.Options;
 
 namespace MoneyTracking.API
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //CORS
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
@@ -37,6 +35,16 @@ namespace MoneyTracking.API
                     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
             });
+            
+            //Add db context
+            services.AddDbContext<AppDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            
+            //Identity
+            services.AddIdentity<AppUser, IdentityRole>(options => 
+                    options.User.RequireUniqueEmail = true)
+                .AddEntityFrameworkStores<AppDbContext>();
+            
             //Configure for Jwt auth
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -56,10 +64,29 @@ namespace MoneyTracking.API
                         ValidateIssuerSigningKey = true
                     };
                 });
-            services.AddSwaggerGen(c =>
+            
+            //Swagger
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "MoneyTracking.API", Version = "v1"});
+                options.SwaggerDoc("v1", new OpenApiInfo 
+                    {Title = "MoneyTracking.API", Version = "v1"});
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+                    In = ParameterLocation.Header,
+                    Name = "Bearer",
+                    Type = SecuritySchemeType.ApiKey
+                });
+
             });
+            
+            //AutoMapper
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -74,6 +101,7 @@ namespace MoneyTracking.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors();
             
             app.UseAuthentication();
             app.UseAuthorization();

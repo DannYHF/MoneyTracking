@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using MoneyTracking.API.Models.Entities;
+using MoneyTracking.Data.Entities;
 using MoneyTracking.Identity.Models;
 
 namespace MoneyTracking.Identity.Services
@@ -9,11 +9,15 @@ namespace MoneyTracking.Identity.Services
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IJwtGenerator _jwtGenerator;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AuthService(UserManager<AppUser> userManager, IJwtGenerator jwtGenerator)
+        public AuthService(UserManager<AppUser> userManager, 
+            IJwtGenerator jwtGenerator,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _jwtGenerator = jwtGenerator;
+            _roleManager = roleManager;
         }
         public async Task<AuthorizationResponse> Login(LoginRequest request)
         {
@@ -37,11 +41,16 @@ namespace MoneyTracking.Identity.Services
             var result = await _userManager.CreateAsync(user, request.Password);
             if (result != IdentityResult.Success)
                 return null;
-            var authenticateUser = await AuthenticateUser(request.Email, request.Password);
-            return new AuthorizationResponse()
+            
+            var authenticatedUser = await AuthenticateUser(request.Email, request.Password);
+            var roleSetResult = await  _userManager.AddToRoleAsync(authenticatedUser, "user");
+            if (roleSetResult == null)
+                return null;
+            
+            return new AuthorizationResponse
             {
-                Id = authenticateUser.Id,
-                Token = _jwtGenerator.GenerateToken(authenticateUser)
+                Id = authenticatedUser.Id,
+                Token = _jwtGenerator.GenerateToken(authenticatedUser)
             };
         }
         private async Task<AppUser> AuthenticateUser(string email, string password)

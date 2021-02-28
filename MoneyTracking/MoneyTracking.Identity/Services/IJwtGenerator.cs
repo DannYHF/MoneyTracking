@@ -1,4 +1,4 @@
-using MoneyTracking.API.Models.Entities;
+using MoneyTracking.Data.Entities;
 
 namespace MoneyTracking.Identity.Services
 {

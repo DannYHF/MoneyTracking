@@ -1,6 +1,6 @@
 using System;
 
-namespace MoneyTracking.API.Models.Entities
+namespace MoneyTracking.Data.Entities
 {
     public class Transaction
     {

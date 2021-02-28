@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MoneyTracking.API.Models.Entities
+namespace MoneyTracking.Data.Entities
 {
     public class Category
     {

@@ -7,11 +7,12 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0-preview.1.21102.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MoneyTracking.API\MoneyTracking.API.csproj" />
+      <ProjectReference Include="..\MoneyTracking.Data\MoneyTracking.Data.csproj" />
       <ProjectReference Include="..\MoneyTracking.Options\MoneyTracking.Options.csproj" />
     </ItemGroup>
 

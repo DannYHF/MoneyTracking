@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
 
-namespace MoneyTracking.API.Models.Entities
+namespace MoneyTracking.Data.Entities
 {
     public class AppUser : IdentityUser
     {
