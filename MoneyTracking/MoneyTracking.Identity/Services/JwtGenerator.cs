@@ -26,8 +26,8 @@ namespace MoneyTracking.Identity.Services
 
             var claims = new List<Claim>()
             {
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
+                new (JwtRegisteredClaimNames.Email, user.Email),
+                new (JwtRegisteredClaimNames.Sub, user.Id)
             };
             foreach (var userRole in _userManager.GetRolesAsync(user).Result)
                 claims.Add(new Claim("role", userRole));
