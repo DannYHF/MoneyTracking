@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using MoneyTracking.API.Models.Response;
+using MoneyTracking.API.Models.Responses;
 using MoneyTracking.Data.Entities;
 
 namespace MoneyTracking.API

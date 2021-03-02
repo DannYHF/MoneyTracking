@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MoneyTracking.API.Models.Request;
-using MoneyTracking.API.Models.Response;
+using MoneyTracking.API.Models.Requests;
+using MoneyTracking.API.Models.Responses;
 
 namespace MoneyTracking.API.Controllers
 {
@@ -22,10 +23,9 @@ namespace MoneyTracking.API.Controllers
             _roleManager = roleManager;
             _mapper = mapper;
         }
-
-        #region Post
         
         [HttpPost]
+        //[Authorize(Roles = "admin")]
         [Route("create")]
         public async Task<IActionResult> CreateRole(RoleQuery query)
         {
@@ -42,7 +42,29 @@ namespace MoneyTracking.API.Controllers
             else
                 return BadRequest(result.Errors.First().Description);
         }
-        [HttpPost]
+        
+        [HttpPut]
+        [Authorize(Roles = "admin")]
+        [Route("update")]
+        public async Task<IActionResult> UpdateRole(UpdateRoleQuery query)
+        {
+            if (string.IsNullOrEmpty(query.OldName) || string.IsNullOrEmpty(query.NewName))
+                return BadRequest("String(s) is null or empty.");
+            
+            var roleFromStorage = await _roleManager.FindByNameAsync(query.OldName);
+            if (roleFromStorage == null)
+                return BadRequest("Role not found.");
+            
+            roleFromStorage.Name = query.NewName;
+            IdentityResult result = await _roleManager.UpdateAsync(roleFromStorage);
+            if (result.Succeeded)
+                return Ok(query.NewName);
+            else
+                return BadRequest(result.Errors.First().Description);
+        }
+
+        [HttpDelete]
+        [Authorize(Roles = "admin")]
         [Route("delete")]
         public async Task<IActionResult> DeleteRole(RoleQuery query)
         {
@@ -59,12 +81,9 @@ namespace MoneyTracking.API.Controllers
             else
                 return BadRequest(result.Errors.First().Description);
         }
-
-        #endregion
-
-        #region Get
         
         [HttpGet]
+        [Authorize(Roles = "admin")]
         [Route("roles")]
         public List<Role> GetRoles()
         {
@@ -72,6 +91,5 @@ namespace MoneyTracking.API.Controllers
             List<Role> response = _mapper.Map<List<IdentityRole>,List<Role>>(identityRoles);
             return response;
         }
-        #endregion
     }
 }

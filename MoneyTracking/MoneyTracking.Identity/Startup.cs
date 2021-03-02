@@ -30,7 +30,7 @@ namespace MoneyTracking.Identity
                     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
             });
-            services.AddDbContext<AppDbContext>(options =>
+            services.AddDbContext<AppDbContext>(options=>
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
  
             services.AddIdentity<AppUser, IdentityRole>(options => 

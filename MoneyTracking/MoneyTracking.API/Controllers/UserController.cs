@@ -3,8 +3,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MoneyTracking.API.Models.Request;
-using MoneyTracking.API.Models.Response;
+using MoneyTracking.API.Models.Requests;
+using MoneyTracking.API.Models.Responses;
 using MoneyTracking.Data.Entities;
 
 namespace MoneyTracking.API.Controllers
@@ -29,6 +29,7 @@ namespace MoneyTracking.API.Controllers
         #region Post
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         [Route("add-role")]
         public async Task<IActionResult> AddRole(AddRoleToUserQuery query)
         {
@@ -61,7 +62,9 @@ namespace MoneyTracking.API.Controllers
         {
             AppUser currentUser = await _userManager.GetUserAsync(User);
             var userInfo = _mapper.Map<IdentityUser, UserInfo>(currentUser);
+            userInfo.Roles =  await _userManager.GetRolesAsync(currentUser);
             return Ok(userInfo);
+
         }
         
         #endregion

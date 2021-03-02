@@ -22,7 +22,7 @@ namespace MoneyTracking.Identity.Controllers
             if (!ModelState.IsValid)
                 return BadRequest("Incorrect request.");
             var response = await _authService.Register(request);
-            if(request == null)
+            if(response == null)
                 return BadRequest("Incorrect data.");
             return Ok(response);
         }

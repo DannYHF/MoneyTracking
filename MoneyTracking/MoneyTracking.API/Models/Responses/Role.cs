@@ -1,4 +1,4 @@
-namespace MoneyTracking.API.Models.Response
+namespace MoneyTracking.API.Models.Responses
 {
     public class Role
     {

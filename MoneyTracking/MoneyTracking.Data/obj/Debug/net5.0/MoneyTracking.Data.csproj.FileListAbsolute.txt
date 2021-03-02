@@ -10,3 +10,6 @@ C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\
 C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\MoneyTracking.Data.dll
 C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\ref\MoneyTracking.Data.dll
 C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\MoneyTracking.Data.pdb
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\bin\Debug\net5.0\MoneyTracking.Data.runtimeconfig.json
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\bin\Debug\net5.0\MoneyTracking.Data.runtimeconfig.dev.json
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Data\obj\Debug\net5.0\MoneyTracking.Data.genruntimeconfig.cache

@@ -1,6 +1,6 @@
 using System;
 
-namespace MoneyTracking.API
+namespace MoneyTracking.Data.Entities
 {
     public class WeatherForecast
     {

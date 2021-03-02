@@ -38,7 +38,7 @@ namespace MoneyTracking.API
             });
             
             //Add db context
-            services.AddDbContext<AppDbContext>(options => 
+            services.AddDbContext<AppDbContext>(options=>
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
             
             //Identity

@@ -1,4 +1,4 @@
-namespace MoneyTracking.API.Models.Request
+namespace MoneyTracking.API.Models.Requests
 {
     public class AddRoleToUserQuery
     {
