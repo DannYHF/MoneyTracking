@@ -22,6 +22,8 @@ namespace MoneyTracking.Identity.Services
         public async Task<AuthorizationResponse> Login(LoginRequest request)
         {
             var user = await AuthenticateUser(request.Email, request.Password);
+            if (user == null)
+                return null;
             return new AuthorizationResponse()
             {
                 Id = user.Id,

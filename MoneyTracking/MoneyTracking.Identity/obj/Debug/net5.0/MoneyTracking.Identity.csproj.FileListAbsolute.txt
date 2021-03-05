@@ -67,3 +67,5 @@ C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Identity\bin\De
 C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Identity\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Identity\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Identity\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Identity\bin\Debug\net5.0\MoneyTracking.Identity.xml
+C:\Users\Danil\Desktop\MoneyTracking\MoneyTracking\MoneyTracking.Identity\obj\Debug\net5.0\MoneyTracking.Identity.xml

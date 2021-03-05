@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MoneyTracking.API.Helpers;
 using MoneyTracking.Data;
 using MoneyTracking.Data.Entities;
 using MoneyTracking.Options;
@@ -30,12 +34,8 @@ namespace MoneyTracking.API
             services.AddControllers();
             //CORS
             services.AddCors(options =>
-            {
                 options.AddDefaultPolicy(builder =>
-                {
-                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                });
-            });
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             
             //Add db context
             services.AddDbContext<AppDbContext>(options=>
@@ -96,13 +96,15 @@ namespace MoneyTracking.API
                         new List<string>()
                     }
                 });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
             });
             
             //AutoMapper
             var mappingConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-            });
+                mc.AddProfile(new MappingProfile()));
+            
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
         }
@@ -124,8 +126,9 @@ namespace MoneyTracking.API
 
             app.UseAuthentication();
             app.UseAuthorization();
-            
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
+            app.UseEndpoints(endpoints =>  endpoints.MapControllers()); 
         }
     }
 }

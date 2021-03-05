@@ -15,6 +15,12 @@ namespace MoneyTracking.Identity.Controllers
         {
             _authService = authService;
         }
+        /// <summary>
+        /// For user register.
+        /// </summary>
+        /// <returns>If registration was successful returns a user id and a JWT Token.
+        /// Else returns a error with  a message.
+        /// </returns>
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
@@ -26,6 +32,12 @@ namespace MoneyTracking.Identity.Controllers
                 return BadRequest("Incorrect data.");
             return Ok(response);
         }
+        /// <summary>
+        /// For user login.
+        /// </summary>
+        /// <returns>If registration was successful returns a user id and a JWT Token.
+        /// Else returns a error with  a message.
+        /// </returns>
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login(LoginRequest request)

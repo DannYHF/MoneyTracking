@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MoneyTracking.API.Models.Requests
+namespace MoneyTracking.API.Models.Queries
 {
     public class RoleQuery
     {

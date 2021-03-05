@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MoneyTracking.Identity</name>
+    </assembly>
+    <members>
+        <member name="M:MoneyTracking.Identity.Controllers.AuthController.Register(MoneyTracking.Identity.Models.RegisterRequest)">
+            <summary>
+            For user register.
+            </summary>
+            <returns>If registration was successful returns a user id and a JWT Token.
+            Else returns a error with  a message.
+            </returns>
+        </member>
+        <member name="M:MoneyTracking.Identity.Controllers.AuthController.Login(MoneyTracking.Identity.Models.LoginRequest)">
+            <summary>
+            For user login.
+            </summary>
+            <returns>If registration was successful returns a user id and a JWT Token.
+            Else returns a error with  a message.
+            </returns>
+        </member>
+    </members>
+</doc>

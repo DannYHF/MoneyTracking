@@ -3,7 +3,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MoneyTracking.API.Models.Requests;
+using MoneyTracking.API.Helpers.ApiExceptions;
+using MoneyTracking.API.Models.Queries;
 using MoneyTracking.API.Models.Responses;
 using MoneyTracking.Data.Entities;
 
@@ -26,47 +27,37 @@ namespace MoneyTracking.API.Controllers
             _mapper = mapper;
         }
 
-        #region Post
+        
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        [Route("add-role")]
-        public async Task<IActionResult> AddRole(AddRoleToUserQuery query)
+        [Route("add-role")] 
+        public async Task AddRole(AddRoleToUserQuery query)
         {
-            if (!ModelState.IsValid)
-                return BadRequest("Invalid request.");
-            
             IdentityRole role = await _roleManager.FindByNameAsync(query.RoleName);
             if (role == null)
-                return BadRequest("Role not found.");
+                throw new NotFoundException(nameof(query.RoleName));
             
             AppUser user = await _userManager.FindByIdAsync(query.UserId);
             if (user == null)
-                return BadRequest("User not found.");
+                throw new NotFoundException("User");
             
             var result = await _userManager.AddToRoleAsync(user, role.Name);
             if(result != IdentityResult.Success)
-                return BadRequest("Failed to add role.");
-            
-            return Ok(query);
+                throw new IdentityResultException(result);
         }
 
-        #endregion
-
-        #region Get
+        
 
         [HttpGet]
         [Authorize]
         [Route("current")]
-        public async Task<IActionResult> GetCurrentUser()
+        public async Task<UserInfo> GetCurrentUser()
         {
             AppUser currentUser = await _userManager.GetUserAsync(User);
             var userInfo = _mapper.Map<IdentityUser, UserInfo>(currentUser);
             userInfo.Roles =  await _userManager.GetRolesAsync(currentUser);
-            return Ok(userInfo);
-
+            return userInfo;
         }
-        
-        #endregion
     }
 }

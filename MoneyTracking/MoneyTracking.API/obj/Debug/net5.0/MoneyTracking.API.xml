@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MoneyTracking.API</name>
+    </assembly>
+    <members>
+        <member name="M:MoneyTracking.API.Controllers.RolesController.CreateRole(MoneyTracking.API.Models.Queries.RoleQuery)">
+            <summary>
+            Creates a new role and returns it.
+            </summary>
+            <exception cref="T:MoneyTracking.API.Helpers.ApiExceptions.AlreadyExistsException">This role already exists.</exception>
+        </member>
+        <member name="M:MoneyTracking.API.Controllers.RolesController.UpdateRole(MoneyTracking.API.Models.Queries.UpdateRoleQuery)">
+            <summary>
+            Updates a role name.
+            </summary>
+            <exception cref="T:MoneyTracking.API.Helpers.ApiExceptions.NotFoundException">Role with this id not found.</exception>
+        </member>
+        <member name="M:MoneyTracking.API.Controllers.RolesController.DeleteRole(System.String)">
+            <summary>
+            Deletes a role.
+            </summary>
+            <exception cref="T:MoneyTracking.API.Helpers.ApiExceptions.InvalidRequestException">The id is invalid </exception>
+            <exception cref="T:MoneyTracking.API.Helpers.ApiExceptions.NotFoundException">Role with this id not found.</exception>
+        </member>
+        <member name="M:MoneyTracking.API.Controllers.RolesController.GetRoles">
+            <summary>
+            Returns a array with roles.
+            </summary>
+        </member>
+    </members>
+</doc>
