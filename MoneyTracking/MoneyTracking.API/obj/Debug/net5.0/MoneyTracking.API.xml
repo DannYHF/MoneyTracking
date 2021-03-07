@@ -28,5 +28,15 @@
             Returns a array with roles.
             </summary>
         </member>
+        <member name="M:MoneyTracking.API.Services.Interfaces.ICategoriesService.CreateCategory(MoneyTracking.API.Models.Queries.CreateCategoryQuery,System.String)">
+            <returns>Category id.</returns>
+        </member>
+        <member name="M:MoneyTracking.API.Services.Interfaces.IImageService.WriteImage(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Write image to path.
+            </summary>
+            <param name="path">Like "C:\Users\UserName\Desktop\MoneyTracking\MoneyTracking"</param>
+            <returns>Image name.</returns>
+        </member>
     </members>
 </doc>

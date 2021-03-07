@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
+using MoneyTracking.Data.Entities;
 
-namespace MoneyTracking.Data.Entities
+namespace MoneyTracking.API.Models.Responses
 {
-    public class Category
+    public class CategoryInfo
     {
         public string Id { get; set; }
+        
         public string ImageName { get; set; }
+        
         public string Name { get; set; }
         
-        public AppUser AppUser { get; set; }
-        public string AppUserId { get; set; }
         public List<Transaction> Transactions { get; set; }
         
         public double TotalPrice => Transactions.Sum(t => t.Spend);

@@ -11,6 +11,7 @@ namespace MoneyTracking.API
         public MappingProfile()
         {
             CreateMap<AppUser, UserInfo>();
+            CreateMap<Category, CategoryInfo>();
             CreateMap<IdentityRole, Role>();
         }
     }

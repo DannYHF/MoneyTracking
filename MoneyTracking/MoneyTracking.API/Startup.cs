@@ -11,10 +11,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MoneyTracking.API.Helpers;
+using MoneyTracking.API.Services;
+using MoneyTracking.API.Services.Interfaces;
 using MoneyTracking.Data;
 using MoneyTracking.Data.Entities;
 using MoneyTracking.Options;
@@ -55,8 +58,8 @@ namespace MoneyTracking.API
             {
                 jwtOptions.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer =AuthOptions.Issuer,
@@ -107,6 +110,12 @@ namespace MoneyTracking.API
             
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
+            
+            //CustomServices
+            services.AddScoped<ICategoriesService, CategoriesService>();
+            services.AddTransient<IImageService, ImageService>(s=> 
+                new ImageService(Path.Combine(Directory.GetCurrentDirectory(),"wwwroot")));
+             
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -128,7 +137,11 @@ namespace MoneyTracking.API
             app.UseAuthorization();
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
-            app.UseEndpoints(endpoints =>  endpoints.MapControllers()); 
+            
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            }); 
         }
     }
 }

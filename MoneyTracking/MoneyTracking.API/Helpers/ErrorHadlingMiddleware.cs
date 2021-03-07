@@ -30,7 +30,7 @@ namespace MoneyTracking.API.Helpers
 
         private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            var code = HttpStatusCode.InternalServerError; // 500 if unexpected
+            var code = HttpStatusCode.BadRequest; // 500 if unexpected
 
             if      (exception is NotFoundException)       code = HttpStatusCode.NotFound;
             else if (exception is InvalidRequestException) code = HttpStatusCode.BadRequest;

@@ -45,7 +45,7 @@ namespace MoneyTracking.Identity.Controllers
             if (!ModelState.IsValid)
                 return BadRequest("Incorrect data.");
             var response = await _authService.Login(request);
-            if(request == null)
+            if(response == null)
                 return BadRequest("Incorrect password or email.");
             return Ok(response);
         }
