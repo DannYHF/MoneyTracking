@@ -12,8 +12,8 @@ namespace MoneyTracking.API.Services.Interfaces
         /// <returns>Category id.</returns>
         Task<string> CreateCategory(CreateCategoryQuery query, string userId);
         Task DeleteCategory(string categoryId);
-        Task<Category> UpdateCategory(UpdateCategoryQuery query);
-        Task<Category> GetCategoryById(string categoryId);
-        List<CategoryInfo> GetCategories(bool doIncludeTransactions, string userId);
+        Task<CategoryInfo> UpdateCategory(UpdateCategoryQuery query);
+        CategoryInfo GetCategoryById(string categoryId);
+        List<CategoryInfo> GetCategories(string userId);
     }
 }

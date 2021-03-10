@@ -16,6 +16,8 @@ namespace MoneyTracking.API.Helpers
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            if (value == null)
+                return new ValidationResult("File can't be null.");
             if (value is IFormFile file)
                 if (file.Length > LengthInBytes)
                     return new ValidationResult(GetErrorMessage(file.Length));

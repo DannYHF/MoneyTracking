@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MoneyTracking.API.Helpers.ApiExceptions;
 using MoneyTracking.API.Models.Queries;
 using MoneyTracking.API.Models.Responses;
 using MoneyTracking.API.Services.Interfaces;
@@ -11,6 +12,7 @@ using MoneyTracking.Data.Entities;
 
 namespace MoneyTracking.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CategoriesController : Controller
@@ -18,21 +20,28 @@ namespace MoneyTracking.API.Controllers
         private readonly ICategoriesService _categoriesService;
         private readonly UserManager<AppUser> _manager;
 
-        public CategoriesController(ICategoriesService categoriesService, UserManager<AppUser> _manager)
+        public CategoriesController(ICategoriesService categoriesService, UserManager<AppUser> manager)
         {
             _categoriesService = categoriesService;
-            this._manager = _manager;
+            _manager = manager;
         }
         
+        /// <summary>
+        /// Create a category.
+        /// </summary>
+        /// <returns>Category id.</returns>
         [HttpPost]
-        [Authorize]
         public async Task<string> CreateCategory([FromForm]CreateCategoryQuery query)
         {
             var userId = _manager.GetUserId(User);
             return await _categoriesService.CreateCategory(query, userId);
         }
 
-        [Authorize]
+        /// <summary>
+        /// Delete a category by id.
+        /// </summary>
+        /// <param name="categoryId">Category id.</param>
+        /// <returns>Status code.</returns>
         [HttpDelete]
         [Route("{categoryId}")]
         public async Task<IActionResult> DeleteCategory([Required]string categoryId)
@@ -41,27 +50,37 @@ namespace MoneyTracking.API.Controllers
             return StatusCode(200);
         }
         
+        /// <summary>
+        /// Update a category. Fill in only the ones you need, leave the rest empty.
+        /// </summary>
         [HttpPut]
-        [Authorize]
-        public async Task<Category> UpdateCategory(UpdateCategoryQuery query)
+        public async Task<CategoryInfo> UpdateCategory([FromForm]UpdateCategoryQuery query)
         {
             return await  _categoriesService.UpdateCategory(query);
         }
-
+        
+        /// <summary>
+        /// Returns all categories of the user. 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        [Authorize]
-        public List<CategoryInfo> GetCategories([Required]bool doIncludeTransactions)
+        public List<CategoryInfo> GetCategories()
         {
             var userId = _manager.GetUserId(User);
-            return  _categoriesService.GetCategories(doIncludeTransactions, userId);
+            return  _categoriesService.GetCategories(userId);
         }
         
+        /// <summary>
+        /// Returns a category by id.
+        /// </summary>
         [HttpGet]
-        [Authorize]
         [Route("{categoryId}")]
-        public async Task<Category> GetCategoryById([Required]string categoryId)
+        public CategoryInfo GetCategoryById(string categoryId)
         {
-            return await _categoriesService.GetCategoryById(categoryId);
+            if (string.IsNullOrWhiteSpace(categoryId))
+                throw new InvalidRequestException("Id can't be null or empty.");
+            
+            return  _categoriesService.GetCategoryById(categoryId);
         }
     }
 }

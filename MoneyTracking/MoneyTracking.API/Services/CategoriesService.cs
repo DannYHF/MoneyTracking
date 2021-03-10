@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using MoneyTracking.API.Helpers.ApiExceptions;
 using MoneyTracking.API.Models.Queries;
@@ -16,17 +17,17 @@ namespace MoneyTracking.API.Services
     public class CategoriesService : ICategoriesService
     {
         private readonly AppDbContext _context;
-        private readonly IMapper _mapper;
         private readonly IImageService _imageService;
-        
+        private readonly IMapper _mapper;
+
 
         public CategoriesService(AppDbContext context,
-            IMapper mapper,
-            IImageService imageService)
+            IImageService imageService,
+            IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;
             _imageService = imageService;
+            _mapper = mapper;
         }
 
         public async Task<string> CreateCategory(CreateCategoryQuery query, string userId)
@@ -59,30 +60,47 @@ namespace MoneyTracking.API.Services
 
         }
 
-        public async Task<Category> UpdateCategory(UpdateCategoryQuery query)
+        public async Task<CategoryInfo> UpdateCategory(UpdateCategoryQuery query)
         {
-            throw new NotImplementedException();
+            Category category = _context.Categories.SingleOrDefault(c=>c.Id == query.CategoryId);
+            if (category == null) 
+                throw new NotFoundException(query.CategoryId);
+
+            if (!string.IsNullOrWhiteSpace(query.Name))
+                category.Name = query.Name;
+
+            if (query.Icon != null && query.Icon.Length != 0)
+            {
+                var imageName = await _imageService.WriteImage(query.Icon);
+                 _imageService.DeleteImage(category.ImageName);
+                 category.ImageName = imageName;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<CategoryInfo>(category);
         }
 
-        public async Task<Category> GetCategoryById(string categoryId)
+        public  CategoryInfo GetCategoryById(string categoryId)
         {
-            throw new NotImplementedException();
+            Category category = _context.Categories.SingleOrDefault(c => c.Id == categoryId);
+
+            if (category == null)
+                throw new NotFoundException(categoryId);
+            
+            return _mapper.Map<CategoryInfo>(category);
         }
 
-        public List<CategoryInfo> GetCategories(bool doIncludeTransactions, string userId)
+        public List<CategoryInfo> GetCategories(string userId)
         {
             var categories = _context.Categories
-                .Where(c =>c.AppUserId == userId);
-
-            if (doIncludeTransactions)
-                 categories.Include(x => x.Transactions);
+                .Where(c => c.AppUserId == userId);
 
             return categories.Select(category => new CategoryInfo
             {
                 Id = category.Id,
                 ImageName =  category.ImageName,
-                Name = category.Name,
-                Transactions = category.Transactions
+                Name = category.Name
             }).ToList();
         }
     }

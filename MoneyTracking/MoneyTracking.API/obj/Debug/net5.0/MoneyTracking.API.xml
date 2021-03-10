@@ -4,6 +4,35 @@
         <name>MoneyTracking.API</name>
     </assembly>
     <members>
+        <member name="M:MoneyTracking.API.Controllers.CategoriesController.CreateCategory(MoneyTracking.API.Models.Queries.CreateCategoryQuery)">
+            <summary>
+            Create a category.
+            </summary>
+            <returns>Category id.</returns>
+        </member>
+        <member name="M:MoneyTracking.API.Controllers.CategoriesController.DeleteCategory(System.String)">
+            <summary>
+            Delete a category by id.
+            </summary>
+            <param name="categoryId">Category id.</param>
+            <returns>Status code.</returns>
+        </member>
+        <member name="M:MoneyTracking.API.Controllers.CategoriesController.UpdateCategory(MoneyTracking.API.Models.Queries.UpdateCategoryQuery)">
+            <summary>
+            Update a category. Fill in only the ones you need, leave the rest empty.
+            </summary>
+        </member>
+        <member name="M:MoneyTracking.API.Controllers.CategoriesController.GetCategories">
+            <summary>
+            Returns all categories of the user. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MoneyTracking.API.Controllers.CategoriesController.GetCategoryById(System.String)">
+            <summary>
+            Returns a category by id.
+            </summary>
+        </member>
         <member name="M:MoneyTracking.API.Controllers.RolesController.CreateRole(MoneyTracking.API.Models.Queries.RoleQuery)">
             <summary>
             Creates a new role and returns it.
@@ -27,6 +56,12 @@
             <summary>
             Returns a array with roles.
             </summary>
+        </member>
+        <member name="M:MoneyTracking.API.Controllers.TestController.IsAuthenticated">
+            <summary>
+            Check authentication.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:MoneyTracking.API.Services.Interfaces.ICategoriesService.CreateCategory(MoneyTracking.API.Models.Queries.CreateCategoryQuery,System.String)">
             <returns>Category id.</returns>

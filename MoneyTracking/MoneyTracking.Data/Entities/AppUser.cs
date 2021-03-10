@@ -11,7 +11,5 @@ namespace MoneyTracking.Data.Entities
         public List<Category> Categories { get; set; }
         public List<Transaction> Transactions { get; set; }
         
-        
-        public double TotalPrice => Transactions.Sum(t => t.Spend);
     }
 }

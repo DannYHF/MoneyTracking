@@ -7,11 +7,16 @@ namespace MoneyTracking.API.Controllers
     [Route("api/[controller]")]
     public class TestController : ControllerBase
     {
+        /// <summary>
+        /// Check authentication.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize]
-        public IActionResult Get()
+        [Route("isauthenticated")]
+        public IActionResult IsAuthenticated()
         {
-            return Ok("You are authorized");
+            return Ok("You are authenticated.");
         }
     }
 }

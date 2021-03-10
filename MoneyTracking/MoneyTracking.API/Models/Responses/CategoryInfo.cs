@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using MoneyTracking.Data.Entities;
 
 namespace MoneyTracking.API.Models.Responses
 {
@@ -12,8 +9,6 @@ namespace MoneyTracking.API.Models.Responses
         
         public string Name { get; set; }
         
-        public List<Transaction> Transactions { get; set; }
         
-        public double TotalPrice => Transactions.Sum(t => t.Spend);
     }
 }

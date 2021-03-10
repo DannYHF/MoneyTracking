@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-
 namespace MoneyTracking.Data.Entities
 {
     public class Category
@@ -13,6 +11,5 @@ namespace MoneyTracking.Data.Entities
         public string AppUserId { get; set; }
         public List<Transaction> Transactions { get; set; }
         
-        public double TotalPrice => Transactions.Sum(t => t.Spend);
     }
 }
