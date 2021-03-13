@@ -33,7 +33,7 @@
             Returns a category by id.
             </summary>
         </member>
-        <member name="M:MoneyTracking.API.Controllers.RolesController.CreateRole(MoneyTracking.API.Models.Queries.RoleQuery)">
+        <member name="M:MoneyTracking.API.Controllers.RolesController.CreateRole(MoneyTracking.API.Models.Queries.CreateRoleQuery)">
             <summary>
             Creates a new role and returns it.
             </summary>
@@ -70,8 +70,12 @@
             <summary>
             Write image to path.
             </summary>
-            <param name="path">Like "C:\Users\UserName\Desktop\MoneyTracking\MoneyTracking"</param>
             <returns>Image name.</returns>
+        </member>
+        <member name="M:MoneyTracking.API.Services.Interfaces.ITransactionsService.CreateTransaction(MoneyTracking.API.Models.Queries.CreateTransactionQuery,System.String)">
+            <summary>
+            Returns id.
+            </summary>
         </member>
     </members>
 </doc>

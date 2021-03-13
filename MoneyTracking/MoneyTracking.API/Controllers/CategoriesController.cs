@@ -47,7 +47,7 @@ namespace MoneyTracking.API.Controllers
         public async Task<IActionResult> DeleteCategory([Required]string categoryId)
         {
             await  _categoriesService.DeleteCategory(categoryId);
-            return StatusCode(200);
+            return StatusCode(204);
         }
         
         /// <summary>

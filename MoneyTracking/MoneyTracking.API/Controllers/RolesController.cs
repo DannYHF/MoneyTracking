@@ -31,7 +31,7 @@ namespace MoneyTracking.API.Controllers
         /// <exception cref="AlreadyExistsException">This role already exists.</exception>
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public async Task<Role> CreateRole(RoleQuery query)
+        public async Task<Role> CreateRole(CreateRoleQuery query)
         {
             var checkRole = await _roleManager.FindByNameAsync(query.RoleName) != null;
             if (checkRole)

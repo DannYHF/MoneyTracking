@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MoneyTracking.API.Models.Queries;
 using MoneyTracking.API.Models.Responses;
-using MoneyTracking.Data.Entities;
 
 namespace MoneyTracking.API.Services.Interfaces
 {

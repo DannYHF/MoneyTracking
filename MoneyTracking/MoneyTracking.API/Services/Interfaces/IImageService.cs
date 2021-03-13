@@ -8,7 +8,6 @@ namespace MoneyTracking.API.Services.Interfaces
         /// <summary>
         /// Write image to path.
         /// </summary>
-        /// <param name="path">Like "C:\Users\UserName\Desktop\MoneyTracking\MoneyTracking"</param>
         /// <returns>Image name.</returns>
         Task<string> WriteImage(IFormFile image);
 

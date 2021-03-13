@@ -112,9 +112,12 @@ namespace MoneyTracking.API
             
             //CustomServices
             services.AddScoped<ICategoriesService, CategoriesService>();
+            
             services.AddTransient<IImageService, ImageService>(s=> 
                 new ImageService(Path.Combine(Directory.GetCurrentDirectory(),"wwwroot")));
-             
+
+            services.AddScoped<ITransactionsService, TransactionsService>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
