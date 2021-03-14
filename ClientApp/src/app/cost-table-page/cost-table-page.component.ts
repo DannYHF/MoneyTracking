@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Cost} from "../shared/intefaces";
+import {Cost, Transaction} from "../shared/intefaces";
+import {TransactionsService} from "../services/transactions.service";
 
 @Component({
   selector: 'app-cost-table-page',
@@ -7,16 +8,13 @@ import {Cost} from "../shared/intefaces";
   styleUrls: ['./cost-table-page.component.scss']
 })
 export class CostTablePageComponent implements OnInit {
-  costs!:Cost[]
+  transactions!:Transaction[]
 
-  constructor() { }
+  constructor(private service:TransactionsService) { }
 
   ngOnInit(): void {
-    this.costs = [
-      {categoryName:'Food', amountOfMoney:10, CreateDate: new Date()},
-      {categoryName:'Wear', amountOfMoney:300, CreateDate: new Date()},
-      {categoryName:'Food', amountOfMoney:40, CreateDate: new Date()},
-      {categoryName:'Cafe', amountOfMoney:50, CreateDate: new Date()}
-    ]
+    this.service.getTransactions().subscribe((transactions)=>{
+      this.transactions= transactions;
+    });
   }
 }

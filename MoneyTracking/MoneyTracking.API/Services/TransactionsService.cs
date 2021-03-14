@@ -38,8 +38,7 @@ namespace MoneyTracking.API.Services
                 Id = Guid.NewGuid().ToString(),
                 Spent = query.Spent,
                 CategoryId = category.Id,
-                AppUserId = userId,
-                Name = query.Name
+                AppUserId = userId
                 
             };
             
@@ -71,7 +70,6 @@ namespace MoneyTracking.API.Services
                 throw new InvalidRequestException($"Invalid {nameof(query.NewSpent)} : {query.NewSpent}");
             
             transaction.Spent = query.NewSpent;
-            transaction.Name = query.Name;
             await _context.SaveChangesAsync();
 
             return _mapper.Map<TransactionInfo>(transaction);
@@ -81,13 +79,13 @@ namespace MoneyTracking.API.Services
         {
             return await _context.Transactions
                 .Where(t => t.CategoryId == categoryId)
+                .Include(x=>x.Category)
                 .Select(t => new TransactionInfo
                 {
                     Id = t.Id,
-                    CategoryId = t.CategoryId,
+                    Category = _mapper.Map<CategoryInfo>(t.Category),
                     Spent = t.Spent,
-                    CreationTime = t.CreationTime,
-                    Name = t.Name
+                    CreationTime = t.CreationTime
                 })
                 .ToListAsync();
         }
@@ -95,6 +93,7 @@ namespace MoneyTracking.API.Services
         public async Task<TransactionInfo> GetTransactionById(string transactionsId)
         {
             Transaction transaction = await _context.Transactions
+                .Include(x=>x.Category)
                 .SingleOrDefaultAsync(t=>t.Id == transactionsId);
             if (transaction == null)
                 throw new NotFoundException(transactionsId);
@@ -106,13 +105,13 @@ namespace MoneyTracking.API.Services
         {
             return await _context.Transactions
                 .Where(t => t.AppUserId == userId)
+                .Include(x=>x.Category)
                 .Select(t => new TransactionInfo
                 {
                     Id = t.Id,
-                    CategoryId = t.CategoryId,
+                    Category = _mapper.Map<CategoryInfo>(t.Category),
                     Spent = t.Spent,
                     CreationTime = t.CreationTime,
-                    Name = t.Name
                 })
                 .ToListAsync();
         }

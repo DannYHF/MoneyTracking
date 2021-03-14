@@ -10,7 +10,5 @@ namespace MoneyTracking.API.Models.Queries
         [Required]
         public double Spent { get; set; }
         
-        [Required]
-        public string Name { get; set; }
     }
 }

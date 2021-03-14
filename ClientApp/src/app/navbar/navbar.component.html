@@ -10,18 +10,40 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <li *ngIf="authService.isAuthenticated()"
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link"
            routerLink="/" >Home</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li *ngIf="authService.isAuthenticated()"
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link"
            routerLink="/cost-table">Cost table</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="form-inline my-2 my-lg-0">
+      <button *ngIf="!authService.isAuthenticated()"
+              class="btn btn-outline-success my-2 my-sm-0"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">
+        <a [routerLink]="['/login']"
+        >Login</a>
+      </button>
+      <button *ngIf="authService.isAuthenticated()"
+              class="btn btn-outline-success my-2 my-sm-0"
+              (click)="logout()">
+        <a [routerLink]="['']">Logout</a>
+      </button>
+      <button *ngIf="!authService.isAuthenticated()"
+              class="btn btn-outline-success my-2 my-sm-0"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">
+        <a [routerLink]="['/register']">Register</a>
+      </button>
+    </div>
   </div>
 </nav>

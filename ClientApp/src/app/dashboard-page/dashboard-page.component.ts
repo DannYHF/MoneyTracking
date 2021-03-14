@@ -1,5 +1,4 @@
-import {AfterViewInit, Component, HostListener, OnInit} from '@angular/core';
-import {fromEvent, Observable} from "rxjs";
+import {Component} from '@angular/core';
 import {ResizedEvent} from "angular-resize-event";
 
 @Component({

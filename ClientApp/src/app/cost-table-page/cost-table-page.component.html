@@ -9,11 +9,11 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let cost of costs;let i = index">
+  <tr *ngFor="let transaction of transactions;let i = index">
     <th scope="row">{{i+1}}</th>
-    <td>{{cost.categoryName}}</td>
-    <td>{{cost.amountOfMoney}}</td>
-    <td>{{cost.CreateDate | date: "short"}}</td>
+    <td>{{transaction.category.name}}</td>
+    <td>{{transaction.spent}}</td>
+    <td>{{transaction.creationTime | date: "short"}}</td>
     <td>
       <button class="btn btn-primary">Edit</button>
       <button class="btn btn-danger">Delete</button>

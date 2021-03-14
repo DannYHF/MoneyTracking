@@ -9,7 +9,6 @@ namespace MoneyTracking.Identity.Services
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IJwtGenerator _jwtGenerator;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
         public AuthService(UserManager<AppUser> userManager, 
             IJwtGenerator jwtGenerator,
@@ -17,14 +16,13 @@ namespace MoneyTracking.Identity.Services
         {
             _userManager = userManager;
             _jwtGenerator = jwtGenerator;
-            _roleManager = roleManager;
         }
         public async Task<AuthorizationResponse> Login(LoginRequest request)
         {
             var user = await AuthenticateUser(request.Email, request.Password);
             if (user == null)
                 return null;
-            return new AuthorizationResponse()
+            return new AuthorizationResponse
             {
                 Id = user.Id,
                 Token = _jwtGenerator.GenerateToken(user)
@@ -35,7 +33,7 @@ namespace MoneyTracking.Identity.Services
         {
             AppUser user = new()
             {
-                FirstName = request.FistName,
+                FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
                 UserName = request.Email

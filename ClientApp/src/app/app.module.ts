@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -11,8 +10,18 @@ import { LastCostsComponent } from './dashboard-page/components/last-costs/last-
 import { DonutChartComponent } from './dashboard-page/components/donut-chart/donut-chart.component';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AngularResizedEventModule} from "angular-resize-event";
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import {JwtModule} from "@auth0/angular-jwt";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {TokenInterceptor} from "./shared/token-interceptor";
+import {ACCESS_TOKEN} from "./shared/local-storage-variables";
+
+export function tokenGetter() {
+  return localStorage.getItem(ACCESS_TOKEN);
+}
 
 @NgModule({
   declarations: [
@@ -22,7 +31,9 @@ import {AngularResizedEventModule} from "angular-resize-event";
     CostTablePageComponent,
     CategoriesComponent,
     LastCostsComponent,
-    DonutChartComponent
+    DonutChartComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,9 +41,22 @@ import {AngularResizedEventModule} from "angular-resize-event";
     FormsModule,
     NgxChartsModule,
     BrowserAnimationsModule,
-    AngularResizedEventModule
+    AngularResizedEventModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter
+      }
+    }),
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

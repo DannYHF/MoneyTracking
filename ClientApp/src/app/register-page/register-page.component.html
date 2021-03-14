@@ -1,0 +1,62 @@
+<form class="card" [formGroup]="registerForm" (ngSubmit)="register()">
+  <div class="card-header">
+    <h2>Login</h2>
+    <div *ngIf="message !== ''"
+         class="alert alert-warning">
+      {{message}}
+    </div>
+  </div>
+  <div class="card-body">
+    <label for="email">Email:</label>
+    <input formControlName="email" class="form-control" type="email" id="email">
+    <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
+         class="text-danger">
+      <small *ngIf="registerForm.get('email')?.errors?.required">
+        Required error
+      </small>
+      <small *ngIf="registerForm.get('email')?.errors?.email">
+        Email isn't correct
+      </small>
+    </div>
+
+    <label for="password">Password:</label>
+    <input formControlName="password" class="form-control" type="password" id="password">
+    <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid"
+         class="text-danger">
+      <small *ngIf="registerForm.get('password')?.errors?.required">
+        Required error
+      </small>
+    </div>
+
+    <label for="confirmPassword">Confirm password:</label>
+    <input formControlName="confirmPassword" class="form-control" type="password" id="confirmPassword">
+    <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid"
+         class="text-danger">
+      <small *ngIf="registerForm.get('confirmPassword')?.errors?.required">
+        Required error
+      </small>
+    </div>
+
+    <label for="firstName">Fist name:</label>
+    <input formControlName="firstName" class="form-control" type="text" id="firstName">
+    <div *ngIf="registerForm.get('firstName')?.touched && registerForm.get('firstName')?.invalid"
+         class="text-danger">
+      <small *ngIf="registerForm.get('firstName')?.errors?.required">
+        Required error
+      </small>
+    </div>
+
+    <label for="firstName">Last name:</label>
+    <input formControlName="lastName" class="form-control" type="text" id="lastName">
+    <div *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid"
+         class="text-danger">
+      <small *ngIf="registerForm.get('lastName')?.errors?.required">
+        Required error
+      </small>
+    </div>
+  </div>
+
+  <button class="btn btn-dark"
+          [disabled]="registerForm.invalid || submitted"
+          type="submit">Submit</button>
+</form>

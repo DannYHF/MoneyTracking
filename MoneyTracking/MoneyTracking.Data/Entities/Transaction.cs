@@ -7,7 +7,6 @@ namespace MoneyTracking.Data.Entities
     {
         public string Id { get; set; }
         public double Spent { get; set; }
-        public string Name { get; set; }
         public DateTime CreationTime { get; set; }
         
         public Category Category { get; set; }

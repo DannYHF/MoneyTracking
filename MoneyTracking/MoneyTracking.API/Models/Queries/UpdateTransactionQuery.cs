@@ -9,8 +9,5 @@ namespace MoneyTracking.API.Models.Queries
         
        [Required]
         public double NewSpent { get; set; }
-        
-        [Required]
-        public string Name { get; set; }
     }
 }
